@@ -1,0 +1,173 @@
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap);
+
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+}
+
+/* Background Blur with Gradient Overlay */
+.img {
+  background: url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center / cover;
+  filter: blur(12px);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -2;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(30,30,30,0.6));
+  z-index: -1;
+}
+
+/* Form Card */
+.form {
+  max-width: 350px;
+  margin: 50px auto;
+  padding: 25px 20px;
+  background: rgba(20, 20, 20, 0.6);
+  -webkit-backdrop-filter: blur(15px); /* Safari */
+  backdrop-filter: blur(15px); /* Standard */
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  text-align: center;
+}
+
+/* Title */
+h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 18px;
+  background: linear-gradient(90deg, #ff9a9e, #fad0c4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #ff9a9e; /* fallback */
+}
+
+/* Switch Field */
+.switch-field {
+  display: flex;
+  margin-bottom: 24px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.05);
+}
+
+.switch-field input {
+  position: absolute !important;
+  clip: rect(0, 0, 0, 0);
+}
+
+.switch-field label {
+  flex: 1;
+  color: #ccc;
+  font-size: 14px;
+  padding: 12px 0;
+  transition: all 0.3s ease;
+}
+
+.switch-field label:hover {
+  background: rgba(255,255,255,0.1);
+  cursor: pointer;
+}
+
+.switch-field input:checked + label {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+  font-weight: 500;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+}
+
+/* Inputs */
+.area, .location {
+  width: 100%;
+  border: none;
+  margin: 0 0 14px;
+  padding: 12px 15px;
+  font-size: 15px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  outline: none;
+  transition: 0.3s;
+}
+
+.area::placeholder, .location::placeholder {
+  color: rgba(255,255,255,0.6);
+}
+
+.area:focus, .location:focus {
+  background: rgba(255,255,255,0.2);
+  border: 1px solid #667eea;
+}
+
+/* Dropdown Styling */
+.location {
+  appearance: none; /* remove default arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: rgba(255,255,255,0.1) url('data:image/svg+xml;utf8,<svg fill="white" height="20" width="20" xmlns="http://www.w3.org/2000/svg"><polygon points="5,7 15,7 10,14"/></svg>') no-repeat right 12px center;
+  background-size: 16px 16px;
+  padding-right: 40px; /* space for arrow */
+}
+
+.location option {
+  background: #1c1c1c;
+  color: #fff;
+  padding: 8px;
+}
+
+/* Submit Button */
+.submit {
+  background: linear-gradient(135deg, #43cea2, #185a9d);
+  color: #fff;
+  width: 100%;
+  border: 0;
+  margin: 18px 0 14px;
+  font-size: 16px;
+  font-weight: 500;
+  height: 42px;
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  cursor: pointer;
+}
+
+/* Result Button - bold gradient */
+.result {
+  background: linear-gradient(135deg, #ff6a00, #ee0979); /* bold orange-pink */
+  color: #fff;
+  width: 100%;
+  border: 0;
+  font-size: 15px;
+  height: 42px;
+  border-radius: 8px;
+  line-height: 42px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.result:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+  cursor: pointer;
+}
+
