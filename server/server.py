@@ -26,8 +26,9 @@ def predict_home_price():
 
 
 if __name__ == "__main__":
-    print("Starting python flask server for Home Price Prediction...")
-    util.load_saved_artifacts()   # ✅ load model & columns before serving
-    app.run()
+    import os
+    port = int(os.environ.get("PORT", 5000))  # Render gives a PORT env variable
+    util.load_saved_artifacts()
+    app.run(host="0.0.0.0", port=port)
 
 
