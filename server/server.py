@@ -1,7 +1,11 @@
 from flask import Flask, request, jsonify
-from server import util
+import server.util as util   # ✅ correct relative import
 
 app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "🏠 Real Estate Price Prediction API is running! Use /get_location_names or /predict_home_price."
 
 @app.route('/get_location_names')
 def get_location_names():
@@ -26,9 +30,6 @@ def predict_home_price():
 
 
 if __name__ == "__main__":
-    import os
-    port = int(os.environ.get("PORT", 5000))  # Render gives a PORT env variable
+    print("Starting python flask server for Home Price Prediction...")
     util.load_saved_artifacts()
-    app.run(host="0.0.0.0", port=port)
-
-
+    app.run(host="0.0.0.0", port=5000)
