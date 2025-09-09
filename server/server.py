@@ -1,11 +1,11 @@
 from flask import Flask, request, jsonify, render_template
-import util
+import server.util as util   # ✅ fixed import
 
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('index.html')   # This will show your frontend
+    return render_template('index.html')
 
 @app.route('/get_location_names')
 def get_location_names():
@@ -27,3 +27,10 @@ def predict_home_price():
     })
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
+
+
+if __name__ == "__main__":
+    print("Starting python flask server for Home Price Prediction...")
+    util.load_saved_artifacts()
+    app.run()
+
