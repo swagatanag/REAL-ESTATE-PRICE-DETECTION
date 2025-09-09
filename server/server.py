@@ -1,14 +1,12 @@
 from flask import Flask, render_template, request, jsonify
-import util   # this is your ML utility file (for prediction functions)
+import server.util as util  # ✅ import util inside server folder
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="../templates", static_folder="../static")
 
-# Home route → show index.html
 @app.route('/')
 def home():
-    return render_template("index.html")   # Flask will look inside /templates/
+    return render_template("index.html")  # loads templates/index.html
 
-# API to get location names
 @app.route('/get_location_names')
 def get_location_names():
     response = jsonify({
@@ -17,7 +15,6 @@ def get_location_names():
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
-# API to predict home price
 @app.route('/predict_home_price', methods=['POST'])
 def predict_home_price():
     total_sqft = float(request.form['total_sqft'])
@@ -32,7 +29,9 @@ def predict_home_price():
     return response
 
 if __name__ == "__main__":
-    print("🏠 Real Estate Price Prediction app is starting...")
+    util.load_saved_artifacts()
+    print("🏠 Real Estate Price Prediction app is running...")
     app.run(host="0.0.0.0", port=5000, debug=True)
+
 
 
