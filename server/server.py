@@ -1,11 +1,11 @@
-from flask import Flask, request, jsonify
-import server.util as util   # ✅ correct relative import
+from flask import Flask, request, jsonify, render_template
+import util
 
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return "🏠 Real Estate Price Prediction API is running! Use /get_location_names or /predict_home_price."
+    return render_template('index.html')   # This will show your frontend
 
 @app.route('/get_location_names')
 def get_location_names():
@@ -27,9 +27,3 @@ def predict_home_price():
     })
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
-
-
-if __name__ == "__main__":
-    print("Starting python flask server for Home Price Prediction...")
-    util.load_saved_artifacts()
-    app.run(host="0.0.0.0", port=5000)
