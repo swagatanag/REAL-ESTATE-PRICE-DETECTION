@@ -14,13 +14,13 @@ def get_estimated_price(location, sqft, bhk, bath):
     """
     try:
         loc_index = __data_columns.index(location.lower())
-    except:
+    except ValueError:
         loc_index = -1
 
     x = np.zeros(len(__data_columns))
     x[0] = sqft
-    x[1] = bath
-    x[2] = bhk
+    x[1] = bhk   # ✅ bhk should be 2nd
+    x[2] = bath  # ✅ bath should be 3rd
     if loc_index >= 0:
         x[loc_index] = 1
 
@@ -28,20 +28,14 @@ def get_estimated_price(location, sqft, bhk, bath):
 
 
 def get_location_names():
-    """
-    Returns list of location names
-    """
+    """Returns list of location names"""
     return __locations
 
 
 def load_saved_artifacts():
-    """
-    Loads model and columns from artifacts folder
-    """
+    """Loads model and columns from artifacts folder"""
     print("Loading saved artifacts...start")
-    global __data_columns
-    global __locations
-    global __model
+    global __data_columns, __locations, __model
 
     base = os.path.dirname(__file__)   # folder where util.py is located
     columns_path = os.path.join(base, "artifacts/columns.json")
@@ -50,8 +44,8 @@ def load_saved_artifacts():
     try:
         with open(columns_path, "r") as f:
             __data_columns = json.load(f)["data_columns"]
-            __locations = __data_columns[3:]  # first 3 = sqft, bath, bhk
-            print("Loaded locations:", __locations[:5], "...")  # show first few
+            __locations = __data_columns[3:]  # first 3 = sqft, bhk, bath
+            print("Loaded locations:", __locations[:5], "...")
     except Exception as e:
         print("Error loading columns.json:", e)
 
@@ -59,16 +53,6 @@ def load_saved_artifacts():
         with open(model_path, "rb") as f:
             __model = pickle.load(f)
             print("Model loaded successfully")
-    except Exception as e:
-        print("Error loading model:", e)
+    except E
 
-    print("Loading saved artifacts...done")
-
-
-# For testing this file standalone
-if __name__ == "__main__":
-    load_saved_artifacts()
-    print(get_location_names())
-    print(get_estimated_price("1st Phase JP Nagar", 1000, 3, 3))
-    print(get_estimated_price("Indira Nagar", 1200, 2, 2))
 
