@@ -1,13 +1,7 @@
 from flask import Flask, render_template, request, jsonify
-from server import util
+from . import util   # ✅ relative import from the same package
 
-import sys
-import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-import util
-
-
-app = Flask(__name__, template_folder="templates", static_folder="static")
+app = Flask(__name__, template_folder="../templates", static_folder="../static")
 
 @app.route('/')
 def home():
@@ -38,6 +32,7 @@ if __name__ == "__main__":
     util.load_saved_artifacts()
     print("🏠 Real Estate Price Prediction app is running...")
     app.run(host="0.0.0.0", port=5000, debug=True)
+
 
 
 
