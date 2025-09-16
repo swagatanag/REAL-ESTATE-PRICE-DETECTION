@@ -1,5 +1,10 @@
 from flask import Flask, render_template, request, jsonify
 import util  # ✅ since util.py is in the root folder
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import util
+
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
 
