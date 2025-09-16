@@ -53,6 +53,17 @@ def load_saved_artifacts():
         with open(model_path, "rb") as f:
             __model = pickle.load(f)
             print("Model loaded successfully")
-    except E
+    except Exception as e:
+        print("Error loading model:", e)
+
+    print("Loading saved artifacts...done")
+
+
+if __name__ == "__main__":
+    load_saved_artifacts()
+    print(get_location_names())
+    print(get_estimated_price("1st Phase JP Nagar", 1000, 3, 3))
+    print(get_estimated_price("Indira Nagar", 1200, 2, 2))
+
 
 
