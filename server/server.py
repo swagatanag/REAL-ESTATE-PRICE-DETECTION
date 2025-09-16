@@ -1,8 +1,7 @@
 from flask import Flask, render_template, request, jsonify
-import server.util as util   # ✅ correct for case 2
+import util  # ✅ since util.py is in the root folder
 
-# templates and static are outside "server" → use ../
-app = Flask(__name__, template_folder="../templates", static_folder="../static")
+app = Flask(__name__, template_folder="templates", static_folder="static")
 
 @app.route('/')
 def home():
@@ -19,7 +18,7 @@ def get_location_names():
 @app.route('/predict_home_price', methods=['POST'])
 def predict_home_price():
     total_sqft = float(request.form['total_sqft'])
-    location = request.form['location'].lower()  # ✅ lowercase for matching
+    location = request.form['location']
     bhk = int(request.form['bhk'])
     bath = int(request.form['bath'])
 
